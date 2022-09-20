@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="tr"  txmlns:th="http://www.thymeleaf.ord">
+<head>
+    <title>homePage</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link
+            href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap"
+            rel="stylesheet"
+    />
+
+
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+</head>
+<body>
+<section class="first">
+    <div class="container">
+<!--        <img-->
+<!--                class="logo"-->
+<!--                src="https://cdn.glitch.com/5f8445e6-7cb3-47ef-8b81-884235184212%2Flogo.png?v=1584514459341"-->
+<!--        />-->
+
+        <nav>
+            <ul class="nav-list">
+
+
+                <li>
+                    <a href="#about">About Us</a>
+
+                </li>
+                <li></li>
+
+                <li>
+                    <a href="#search"  th:href="@{categories}">Search</a>
+                </li>
+                <li>
+                    <a href="#" th:href="@{sorting}">sort</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="row">
+        <div class="column1">
+            <h1>
+               Butun Akademik Yayınlarda Arama Yapın
+            </h1>
+            <a th:href="@{categories}"><button class="search-btn" >
+                Search
+            </button></a>
+        </div>
+        <div class="column2">
+            <img
+                    class="hero-image"
+                    src="https://asosindex.com.tr/assets/img/brand/asos-index.png"
+            />
+        </div>
+    </div>
+</section>
+<section class="second">
+    <div class="hero-text">
+        <h1 id="about" >
+            About Us
+        </h1>
+        <p>
+            Asos Eğitim Bilişim Danışmanlık
+            Asos Eğitim Bilişim Danışmanlık şirketi temelini 2013 yılında 3 akademisyen
+            tarafından atılmış olsa da ticarileşmesi 2016 yılının başında gerçekleştirilmiştir.
+            Asos Eğitim Bilişim Yayıncılık olarak ünvanı tescil edilen firmamız bilişim, yayıncılık
+            ve danışmanlık sektöründe hizmet vermektedir. Sobiad ve İntihal; şirketimizin en çok öne
+            çıkan değerleridir. Bu iki ürün aracılığı ile bilişim sektöründe önemli bir yer edinen şirketimiz
+            Türkiye'nin ilk yerli ve milli yazılımları ile sürekli medyanın ilgisini çekmiştir
+            . Asos Eğitim Bilişim Danışmanlık şirketi bugün onlarca farklı sempozyum organize
+            eden, fuarlarda ürünler tanıtan, Türkiye'deki 80 farklı kamu kurumuna satış yapmış
+            Türkiye'nin önde gelen firmalarından biri olmuştur. Bilişim 500 sıralamasında Elazığ'dan
+            girip Türkiye'deki ilk 500 yazılım şirketinden biri olan Asos Eğitim Bilişim akademik
+            alanlarda yaptığı çalışmalarına devam etmektedir. Asos Bilişim şimdiye kadar yayınladığı
+            onlarca Akademi kitabı ile de Türkiye'nin Saygın yayınevlerinden biri olmuştur.
+            Türkiye'nin gücü ile dünyada yarışan yazılımlar Asos bilişimde gerçekleştirilmektedir.
+            Asos Bilişim aynı zamanda devletin kritik kurumlarından olan Milli Eğitim Bakanlığı Talim
+            ve Terbiye Kurulu başta olmak üzere tüm Devlete millete hizmet eden önemli yazılımlar da üretmektedir.
+            Asos eğitim Bilişim danışmanlık ile ilgili tüm Medya haberlerini medyada Biz
+            kısmından görebilirsiniz.
+        </p>
+    </div>
+</section>
+<section class="product-list ">
+    <div id="search">
+        <h1 class="align-center">
+            Akademik Yayınlarda Arama Yapın
+        </h1>
+    </div>
+
+    <form action="/search" METHOD="POST">
+        <div class="searchbar">
+            <input type="text" name="entry" class="search-input" placeholder="Yazar İsmi, Yayın İsmi veya Anahtar Kelime ile Arama Yapın.">
+<!--            <input type="submit">-->
+            <span> <input type="submit" class="search-icon" value=""></span>
+        </div>
+    </form>
+
+    <div class="product-container">
+
+
+        <div th:each="array:${catlist}">
+            <div class="card">
+                <div class="content">
+
+                    <div class="new" >
+                        <!--        <img src="https://cdn.glitch.com/9cf36649-4cc8-43b3-936f-9f591ad3040c%2Fnew.png?v=1586849341161">-->
+
+                    </div>
+
+
+
+                    <div class="title">OZETI</div>
+                    <div class="image" th:text="${array}">
+                        <!--        <img-->
+                        <!--                src="https://cdn.glitch.com/5f8445e6-7cb3-47ef-8b81-884235184212%2Fphoto-1505740420928-5e560c06d30e.jpeg?v=1585724732029"-->
+                        <!--        />-->
+                    </div>
+                    <div class="text">
+                        Makalenin ozeti.
+                    </div>
+                </div>
+                <button  class="buy-button details">
+                    Details
+                </button>
+
+            </div>
+        </div>
+        <!--       First Product -->
+
+
+
+<!--        &lt;!&ndash; Second Product &ndash;&gt;-->
+
+<!--        <div class="card">-->
+<!--            <div class="title">Polaroid Camera</div>-->
+<!--            <div class="image">-->
+<!--                <img-->
+<!--                        src="https://cdn.glitch.com/5f8445e6-7cb3-47ef-8b81-884235184212%2Fphoto-1526170375885-4d8ecf77b99f.jpeg?v=1585724749339"-->
+<!--                />-->
+<!--            </div>-->
+<!--            <div class="text">-->
+<!--                This is a polaroid camera. O'l skool style.-->
+<!--            </div>-->
+
+<!--            <button  class="buy-button details">-->
+<!--                Details-->
+<!--            </button>-->
+
+<!--        </div>-->
+
+<!--        &lt;!&ndash;       Third Product &ndash;&gt;-->
+<!--        <div class="card">-->
+<!--            <div class="title">Polaroid Camera</div>-->
+<!--            <div class="image">-->
+<!--                <img-->
+<!--                        src="https://cdn.glitch.com/5f8445e6-7cb3-47ef-8b81-884235184212%2Fphoto-1515955656352-a1fa3ffcd111.jpeg?v=1585724733237"-->
+<!--                />-->
+<!--            </div>-->
+<!--            <div class="text">-->
+<!--                This is a polaroid camera. O'l skool style.-->
+<!--            </div>-->
+
+<!--            <button  class="buy-button details">-->
+<!--                Details-->
+<!--            </button>-->
+
+<!--        </div>-->
+
+
+<!--        &lt;!&ndash;       Fourth Product &ndash;&gt;-->
+<!--        <div class="card">-->
+<!--            <div class="title">Polaroid Camera</div>-->
+<!--            <div class="image">-->
+<!--                <img-->
+<!--                        src="https://cdn.glitch.com/5f8445e6-7cb3-47ef-8b81-884235184212%2Fphoto-1486401899868-0e435ed85128.jpeg?v=1585724757848"-->
+<!--                />-->
+<!--            </div>-->
+<!--            <div class="text">-->
+<!--                This is a polaroid camera. O'l skool style.-->
+<!--            </div>-->
+
+<!--            <button  class="buy-button">-->
+<!--                Details-->
+<!--            </button>-->
+
+<!--        </div>-->
+
+
+    </div>
+
+
+
+</section>
+</body>
+</html>

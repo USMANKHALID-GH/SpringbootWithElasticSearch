@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="tr"  txmlns:th="http://www.thymeleaf.ord">
+<head>
+    <title>Makeleri1</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link
+            href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap"
+            rel="stylesheet"
+    />
+
+
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+</head>
+<body>
+<section class="first">
+    <div class="container">
+<!--        <img-->
+<!--                class="logo"-->
+<!--                src="https://cdn.glitch.com/5f8445e6-7cb3-47ef-8b81-884235184212%2Flogo.png?v=1584514459341"-->
+<!--        />-->
+
+        <nav>
+            <ul class="nav-list">
+
+
+                <li>
+                    <a th:href="@{homepage}">HomePage</a>
+
+                </li>
+                <li></li>
+
+                <li>
+                    <a href="#search"  th:href="@{categories}">Search</a>
+                </li>
+                <li>
+                    <a href="#" th:href="@{sorting}">sort</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+<!--    <div class="row">-->
+<!--        <div class="column1">-->
+<!--            <h1>-->
+<!--                Get a perfect teacher to guide you.-->
+<!--            </h1>-->
+<!--            <button class="search-btn">-->
+<!--                Search-->
+<!--            </button>-->
+<!--        </div>-->
+<!--        <div class="column2">-->
+<!--            <img-->
+<!--                    class="hero-image"-->
+<!--                    src="https://asosindex.com.tr/assets/img/brand/asos-index.png"-->
+<!--            />-->
+<!--        </div>-->
+<!--    </div>-->
+</section>
+
+<section class="product-list ">
+
+    <div id="search">
+        <h1 class="align-center">
+            Akademik Yayınlarda Arama Yapın
+        </h1>
+    </div>
+    <form action="/search" METHOD="POST"   onsubmit="return validateForm()" >
+        <div class="searchbar">
+            <input type="text"  id="search1" name="entry" class="search-input" placeholder="Yazar İsmi, Yayın İsmi veya Anahtar Kelime ile Arama Yapın.">
+
+            <span> <input type="submit"  id="button" class="search-icon" value=""> </span>
+        </div>
+    </form>
+    <a th:href="@{english}">
+
+        <button class="lan" >En</button>
+    </a>
+    <a th:href="@{turkish}">
+        <button class="lan" >Tr</button>
+    </a>
+
+    <div class="product-container">
+
+
+        <div th:each="emp, array:${catlist}"  th:object="${author}" >
+            <div class="card">
+                <div class="content">
+<!--                    <div id="errors" th:if="${title[array.index] == ''}">THERE IS NOT SUCH WORD OR PHRASE IN OUR DATADASE</div>-->
+                    <div class="new" >
+                        <a th:href="${pdf[array.index]}">
+                            <img th:src="@{/assets/download.jpg}">
+                        </a>
+
+
+                    </div>
+
+
+
+                    <div  id="title" class="title" th:utext="${title[array.index]}" >OZETI</div>
+
+                    <div class="image header2" id="text3" th:utext="${emp}"></div>
+                    <!--        <div data-th-utext="${#strings.replace(#strings.escapeXml(emp),'&#10;','&lt;br&gt;')}"></div>-->
+
+                    <div class="text" th:utext="${author[array.index]}" >
+                        Makalenin ozeti.
+                    </div>
+                    <div class="text" th:utext="${year[array.index]}" >
+                        Makalenin ozeti.
+                    </div>
+
+                </div>
+                <a th:href="${links[array.index]}">
+                    <button  class="buy-button details">
+                        Details
+
+                    </button></a>
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+    </div>
+</section>
+</body>
+</html>
+
+
+
+</div>
+</div>
+
+<script>
+    function search() {
+        let searched = document.getElementById("search1");
+        console.log(searched);
+        if (searched !== "") {
+            let text = document.getElementById("text3").innerHTML;
+            let re = new RegExp(searched,"ig"); // search for all instances
+            let newText = text.replace(re, `<mark>${searched}</mark>`);
+            document.getElementById("text3").innerHTML = newText;
+        }
+    }
+
+    function validateForm() {
+        var e = document.getElementById("title").innerHTML;
+        console.log(e);
+        if (e == "") {
+            alert("Name must be filled out");
+            document.getElementById("errors").innerText="THERE IS NO SUCH WORD OR DATE IN OUR DATABASE!!!!!!!";
+          return false;
+        }
+
+    }
+</script>
+</body>
+</html>
